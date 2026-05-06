@@ -5,8 +5,8 @@
  * Initializes the development environment and repository structure
  */
 
-const fs = require('fs');
-const path = require('path');
+import { existsSync, mkdirSync, writeFileSync } from 'fs';  //ES6 module syntax using import statement
+import path from 'path';
 
 console.log('🚀 Setting up Day 1: SDLC & GitHub Mastery...\n');
 
@@ -23,9 +23,9 @@ const directories = [
 ];
 
 directories.forEach(dir => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-    console.log(`✅ Created directory: ${dir}`);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+    console.log(`Created directory: ${dir}`);
   }
 });
 
@@ -90,9 +90,9 @@ This week focuses on establishing the foundation for advanced frontend developme
 ];
 
 files.forEach(file => {
-  if (!fs.existsSync(file.path)) {
-    fs.writeFileSync(file.path, file.content);
-    console.log(`✅ Created file: ${file.path}`);
+  if (!existsSync(file.path)) {
+    writeFileSync(file.path, file.content);
+    console.log(`Created file: ${file.path}`);
   }
 });
 
@@ -102,4 +102,4 @@ console.log('1. Review the created files and directories');
 console.log('2. Follow the hands-on tasks in the README');
 console.log('3. Create your first commit');
 console.log('4. Set up your branching strategy');
-console.log('\nHappy coding! 🚀');
+console.log('\n Happy coding! 🚀');

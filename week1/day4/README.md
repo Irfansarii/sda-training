@@ -368,7 +368,7 @@ export function DataProvider({ children }) {
     
     if (state.cache.has(cacheKey)) {
       return state.cache.get(cacheKey);
-    }
+    } 
 
     dispatch({ type: 'SET_LOADING', payload: true });
     
