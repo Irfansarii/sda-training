@@ -236,7 +236,7 @@ function initializeThemeSwitcher() {
     themeToggle.className = 'theme-toggle';
     themeToggle.style.cssText = `
         position: fixed;
-        top: 20px;
+        top: 8px;
         right: 20px;
         background: var(--primary-color);
         color: white;
