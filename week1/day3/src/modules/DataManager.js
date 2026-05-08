@@ -14,7 +14,7 @@ export class DataManager {
         
         try {
             //${endpoint}
-            const response = await fetch(`${this.apiUrl}`, {
+            const response = await fetch(`${this.apiUrl}${endpoint}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     ...options.headers

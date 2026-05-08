@@ -6,7 +6,7 @@ class DashboardApp {
     constructor() {
         // this.dataManager = new DataManager('/api');
         this.dataManager = new DataManager(
-            'https://jsonplaceholder.typicode.com'
+            'https://jsonplaceholder.typicode.com/users'
         );
         this.chartManager = null;
         this.performanceMonitor = new PerformanceMonitor();
