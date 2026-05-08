@@ -54,20 +54,7 @@ export class ChartManager {
     // }
 
 
-    // async createCharts() {
 
-    //     const users = await this.dataManager.fetchData('/users');
-
-    //     this.container.innerHTML = `
-    //         <h2>Chart Data</h2>
-
-    //         ${users.map(user => `
-    //             <div>
-    //                 ${user.name}
-    //             </div>
-    //         `).join('')}
-    //     `;
-    // }
     async createCharts() {
         this.charts.forEach(chart => chart.destroy());
         this.charts.clear();
