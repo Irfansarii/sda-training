@@ -6,7 +6,7 @@ body {
 }
 
 .real-time-dashboard {
-  max-width: 1200px;
+  min-width: 1200px;
   margin: auto;
 }
 
@@ -38,6 +38,9 @@ body {
   margin: auto;
 }
 
+.chart-card{
+  width: 50% !important;
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);
