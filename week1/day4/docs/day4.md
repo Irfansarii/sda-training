@@ -39,7 +39,7 @@ Build a comprehensive React dashboard with hooks and state management
 
 1. Created Architechture
 
-day3
+day4
 |
 ------docs/day4.md
 ------screenshots
