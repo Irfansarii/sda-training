@@ -82,13 +82,13 @@ day5
     # Orders
           0
           0%
-3. # Handle Loader in the component
+2. # Handle Loader in the component
    # Handle Error in the component
 
-4. Analytics Dashboard
+3. Analytics Dashboard
             |
             # Revenue Trend
             # User Growth
             # Orders Distribution
 
-5. Done with Dummy Data.
+4. Done with Dummy Data.
