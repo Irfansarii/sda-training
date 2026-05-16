@@ -15,7 +15,13 @@ router.post('/register', async (req, res, next) => {
     next(error);
   }
 });
+router.get('/register', (req, res) => {
+  res.send('Register page working');
+});
 
+router.get('/login', (req, res) => {
+  res.send('Login page working');
+});
 router.post('/login', async (req, res, next) => {
   try {
     const result = await userService.authenticateUser(
