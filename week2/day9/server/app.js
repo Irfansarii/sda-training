@@ -7,11 +7,10 @@ const morgan = require('morgan');
 const { body, validationResult } = require('express-validator');
 
 // Import custom middleware
-const authMiddleware = require('./middleware/auth');
+const { authMiddleware } = require('./middleware/auth');
 const validationMiddleware = require('./middleware/validation');
-const errorHandler = require('./middleware/errorHandler');
-const logger = require('./middleware/logger');
-const performanceMiddleware = require('./middleware/performance');
+const { errorHandler, logger } = require('./middleware/errorHandler');
+const { performanceMiddleware } = require('./middleware/performance');
 
 // Import routes
 const userRoutes = require('./routes/userRoutes');
@@ -65,7 +64,6 @@ class ExpressApp {
 
     // Logging
     this.app.use(morgan('combined'));
-    this.app.use(logger);
 
     // Performance monitoring
     this.app.use(performanceMiddleware);
@@ -75,7 +73,7 @@ class ExpressApp {
     this.app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
     // Request validation
-    this.app.use(validationMiddleware);
+    // this.app.use(validationMiddleware);
   }
 
   setupRoutes() {
@@ -110,6 +108,7 @@ class ExpressApp {
   }
 
   start() {
+    console.log('Starting server...');
     this.app.listen(this.port, () => {
       console.log(`Server running on port ${this.port}`);
       console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
@@ -118,3 +117,7 @@ class ExpressApp {
 }
 
 module.exports = ExpressApp;
+
+// Instantiate and start the server
+const app = new ExpressApp();
+app.start();
