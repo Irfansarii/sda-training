@@ -40,7 +40,7 @@ export function useApi<T>(
     setError(null);
 
     try {
-      const response = await apiClient.get(endpoint);
+      const response = await apiClient.get<T>(endpoint);
       setData(response.data);
 
       // Cache data if offline support is enabled
@@ -48,7 +48,8 @@ export function useApi<T>(
         await offlineService.storeOfflineData(cacheKey, response.data, Date.now() + cacheExpiry);
       }
     } catch (err) {
-      setError(err.message);
+      const message = err instanceof Error ? err.message : String(err);
+      setError(message);
     } finally {
       setLoading(false);
     }

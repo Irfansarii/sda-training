@@ -121,6 +121,10 @@ class ApiClient {
     }
   }
 
+  async get<T>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+    return this.makeRequest<T>('GET', url, undefined, config);
+  }
+
   private async queueOfflineRequest(method: string, url: string, data: any) {
     const offlineData = await AsyncStorage.getItem('offlineData');
     const queue = offlineData ? JSON.parse(offlineData) : [];
@@ -152,8 +156,8 @@ class ApiClient {
   async getUsers(filters: UserFilters = {}) {
     const params = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
-      if (value !== undefined) {
-        params.append(key, value.toString());
+      if (value != null) {
+        params.append(key, String(value));
       }
     });
 
