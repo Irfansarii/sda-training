@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { authService } from '../services/authService';
+import { authService } from '../../services/authService';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -40,7 +40,8 @@ export const loginUser = createAsyncThunk(
       await AsyncStorage.setItem('authToken', response.token);
       return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
     }
   }
 );
@@ -52,7 +53,8 @@ export const logoutUser = createAsyncThunk(
       await AsyncStorage.removeItem('authToken');
       return null;
     } catch (error) {
-      return rejectWithValue(error.message);
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
     }
   }
 );
@@ -68,7 +70,8 @@ export const checkAuthStatus = createAsyncThunk(
       }
       return null;
     } catch (error) {
-      return rejectWithValue(error.message);
+      const message = error instanceof Error ? error.message : String(error);
+      return rejectWithValue(message);
     }
   }
 );

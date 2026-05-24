@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Import screens
@@ -11,27 +11,31 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AnalyticsScreen from '../screens/AnalyticsScreen';
 
+type TabParamList = {
+  Dashboard: undefined;
+  Analytics: undefined;
+  Profile: undefined;
+  Settings: undefined;
+};
+
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName: string;
-
-          if (route.name === 'Dashboard') {
-            iconName = 'dashboard';
-          } else if (route.name === 'Analytics') {
-            iconName = 'analytics';
-          } else if (route.name === 'Profile') {
-            iconName = 'person';
-          } else if (route.name === 'Settings') {
-            iconName = 'settings';
-          } else {
-            iconName = 'help';
-          }
+      screenOptions={({ route }): BottomTabNavigationOptions => ({
+        tabBarIcon: ({ color, size }) => {
+          const iconName =
+            route.name === 'Dashboard'
+              ? 'dashboard'
+              : route.name === 'Analytics'
+              ? 'analytics'
+              : route.name === 'Profile'
+              ? 'person'
+              : route.name === 'Settings'
+              ? 'settings'
+              : 'help';
 
           return <Icon name={iconName} size={size} color={color} />;
         },
