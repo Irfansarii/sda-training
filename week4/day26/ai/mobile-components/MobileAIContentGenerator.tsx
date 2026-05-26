@@ -32,7 +32,7 @@ interface GeneratedContent {
 const MobileAIContentGenerator: React.FC<ContentGeneratorProps> = ({
   apiUrl,
   theme = 'light',
-}) => {
+}: ContentGeneratorProps) => {
   const [contentType, setContentType] = useState('article');
   const [topic, setTopic] = useState('');
   const [tone, setTone] = useState('professional');
@@ -50,6 +50,11 @@ const MobileAIContentGenerator: React.FC<ContentGeneratorProps> = ({
     setIsGenerating(true);
 
     try {
+      const keywordArray: string[] = keywords
+        .split(',')
+        .map((k: string) => k.trim())
+        .filter((k: string) => k);
+
       const response = await fetch(`${apiUrl}/generate`, {
         method: 'POST',
         headers: {
@@ -60,7 +65,7 @@ const MobileAIContentGenerator: React.FC<ContentGeneratorProps> = ({
           topic: topic.trim(),
           tone: tone,
           length: length,
-          keywords: keywords.split(',').map(k => k.trim()).filter(k => k),
+          keywords: keywordArray,
         }),
       });
 
@@ -78,7 +83,7 @@ const MobileAIContentGenerator: React.FC<ContentGeneratorProps> = ({
           topic: topic.trim(),
           tone,
           length,
-          keywords: keywords.split(',').map(k => k.trim()).filter(k => k),
+          keywords: keywordArray,
         },
         timestamp: new Date(),
       };
